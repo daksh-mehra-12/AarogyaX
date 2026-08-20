@@ -1,0 +1,11 @@
+# Aarogya X — Python Dependencies (Backend & Machine Learning)
+flask==3.0.3
+flask-sqlalchemy==3.1.1
+flask-cors==4.0.1
+pyjwt==2.8.0
+werkzeug==3.0.3
+scikit-learn==1.4.2
+pandas==2.2.2
+numpy==1.26.4
+joblib==1.4.2
+reportlab==5.0.0

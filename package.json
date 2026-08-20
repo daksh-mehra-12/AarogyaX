@@ -1,0 +1,12 @@
+{
+  "name": "aarogya-x",
+  "version": "1.0.0",
+  "private": true,
+  "license": "MIT",
+  "scripts": {
+    "dev:backend": "cd backend && py app.py",
+    "dev:frontend": "cd frontend && pnpm run dev",
+    "build": "cd frontend && pnpm run build",
+    "typecheck": "cd frontend && pnpm run typecheck"
+  }
+}

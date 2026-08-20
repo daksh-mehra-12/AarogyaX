@@ -1,0 +1,187 @@
+Infection,Organism,Antibiotic,Sensitivity (%),Resistance (%)
+UTI,E. coli,Amikacin,61.2,38.8
+UTI,E. coli,Cefepime,27,73
+UTI,E. coli,Cefotaxime,12.7,87.3
+UTI,E. coli,Ceftazidime,10.8,89.2
+UTI,E. coli,Ceftriaxone,12.8,87.2
+UTI,E. coli,Ciprofloxacin,13.6,86.4
+UTI,E. coli,Colistin,99.1,0.9
+UTI,E. coli,Ertapenem,47.7,52.3
+UTI,E. coli,Gentamicin,48.7,51.3
+UTI,E. coli,Imipenem,54.9,45.1
+UTI,E. coli,Levofloxacin,13.4,86.6
+UTI,E. coli,Meropenem,56.4,43.6
+UTI,E. coli,Minocycline,72.7,27.3
+UTI,E. coli,Piperacillin-Tazobactam,42.1,57.9
+UTI,E. coli,Tetracycline,27.9,72.1
+UTI,E. coli,Tobramycin,41.4,58.6
+UTI,E. coli,Amoxicillin-Clavulanate,22.6,77.4
+UTI,Klebsiella,Amikacin,30.2,69.8
+UTI,Klebsiella,Cefepime,16.8,83.2
+UTI,Klebsiella,Cefotaxime,7.9,92.1
+UTI,Klebsiella,Ceftazidime,4.3,95.7
+UTI,Klebsiella,Ceftriaxone,9.9,90.1
+UTI,Klebsiella,Ciprofloxacin,16.1,83.9
+UTI,Klebsiella,Colistin,89.5,10.5
+UTI,Klebsiella,Ertapenem,21.3,78.7
+UTI,Klebsiella,Gentamicin,28,72
+UTI,Klebsiella,Imipenem,31.1,68.9
+UTI,Klebsiella,Levofloxacin,13.3,86.7
+UTI,Klebsiella,Meropenem,32.6,67.4
+UTI,Klebsiella,Minocycline,41.1,58.9
+UTI,Klebsiella,Piperacillin-Tazobactam,21,79
+UTI,Klebsiella,Tetracycline,35.6,64.4
+UTI,Klebsiella,Amoxicillin-Clavulanate,15.6,84.4
+UTI,Pseudomonas,Amikacin,37.5,62.5
+UTI,Pseudomonas,Cefepime,24.3,75.7
+UTI,Pseudomonas,Ceftazidime,26.6,73.4
+UTI,Pseudomonas,Ciprofloxacin,25.8,74.2
+UTI,Pseudomonas,Colistin,100,0
+UTI,Pseudomonas,Gentamicin,43.9,56.1
+UTI,Pseudomonas,Imipenem,24,76
+UTI,Pseudomonas,Levofloxacin,25,75
+UTI,Pseudomonas,Meropenem,24.6,75.4
+UTI,Pseudomonas,Piperacillin-Tazobactam,43.6,56.4
+UTI,Pseudomonas,Tobramycin,19.4,80.6
+UTI,Acinetobacter,Amikacin,8.6,91.4
+UTI,Acinetobacter,Cefepime,20.5,79.5
+UTI,Acinetobacter,Cefotaxime,3.7,96.3
+UTI,Acinetobacter,Ceftazidime,11.8,88.2
+UTI,Acinetobacter,Ciprofloxacin,14.6,85.4
+UTI,Acinetobacter,Colistin,92.3,7.7
+UTI,Acinetobacter,Gentamicin,7.3,92.7
+UTI,Acinetobacter,Imipenem,15.8,84.2
+UTI,Acinetobacter,Levofloxacin,12.1,87.9
+UTI,Acinetobacter,Meropenem,21.6,78.4
+UTI,Acinetobacter,Minocycline,67.4,32.6
+UTI,Acinetobacter,Piperacillin-Tazobactam,19,81
+UTI,Acinetobacter,Tetracycline,26.7,73.3
+UTI,Acinetobacter,Tobramycin,5.9,94.1
+UTI,Enterococcus,Ampicillin,~20,~80
+UTI,Enterococcus,Ciprofloxacin,~5,~95
+UTI,Enterococcus,Linezolid,~92,~8
+UTI,Enterococcus,Nitrofurantoin,~55,~45
+UTI,Enterococcus,Vancomycin,~70,~30
+UTI,Enterococcus,Fosfomycin,~50,~50
+,,,,
+bloodstream infections,Organism,Antibiotic,Sensitivity (%),Resistance (%)
+bloodstream infections,Klebsiella pneumoniae,Amikacin,24.4,75.6
+bloodstream infections,Klebsiella pneumoniae,Cefepime,13.6,86.4
+bloodstream infections,Klebsiella pneumoniae,Cefotaxime,9.2,90.8
+bloodstream infections,Klebsiella pneumoniae,Ceftazidime,8.6,91.4
+bloodstream infections,Klebsiella pneumoniae,Ceftriaxone,7.3,92.7
+bloodstream infections,Klebsiella pneumoniae,Ciprofloxacin,18.4,81.6
+bloodstream infections,Klebsiella pneumoniae,Colistin,94.9,5.1
+bloodstream infections,Klebsiella pneumoniae,Ertapenem,16.7,83.3
+bloodstream infections,Klebsiella pneumoniae,Gentamicin,30.9,69.1
+bloodstream infections,Klebsiella pneumoniae,Imipenem,22.4,77.6
+bloodstream infections,Klebsiella pneumoniae,Meropenem,23,77
+bloodstream infections,Klebsiella pneumoniae,Minocycline,49.4,50.6
+bloodstream infections,Klebsiella pneumoniae,Tetracycline,50.4,49.6
+bloodstream infections,Klebsiella pneumoniae,Tigecycline,79.3,20.7
+bloodstream infections,Escherichia coli,Amikacin,58.4,41.6
+bloodstream infections,Escherichia coli,Cefepime,23.6,76.4
+bloodstream infections,Escherichia coli,Cefotaxime,11.6,88.4
+bloodstream infections,Escherichia coli,Ceftazidime,14.3,85.7
+bloodstream infections,Escherichia coli,Ceftriaxone,15.4,84.6
+bloodstream infections,Escherichia coli,Ciprofloxacin,14.1,85.9
+bloodstream infections,Escherichia coli,Colistin,98.9,1.1
+bloodstream infections,Escherichia coli,Ertapenem,33.3,66.7
+bloodstream infections,Escherichia coli,Gentamicin,51.3,48.7
+bloodstream infections,Escherichia coli,Imipenem,43.4,56.6
+bloodstream infections,Escherichia coli,Meropenem,44.1,55.9
+bloodstream infections,Escherichia coli,Minocycline,63.3,36.7
+bloodstream infections,Escherichia coli,Tetracycline,34.6,65.4
+bloodstream infections,Escherichia coli,Tigecycline,84,16
+bloodstream infections,Acinetobacter baumannii,Amikacin,13.2,86.8
+bloodstream infections,Acinetobacter baumannii,Cefepime,7.7,92.3
+bloodstream infections,Acinetobacter baumannii,Cefotaxime,4.2,95.8
+bloodstream infections,Acinetobacter baumannii,Ceftazidime,7.1,92.9
+bloodstream infections,Acinetobacter baumannii,Ciprofloxacin,10.2,89.8
+bloodstream infections,Acinetobacter baumannii,Colistin,99,1
+bloodstream infections,Acinetobacter baumannii,Imipenem,9,91
+bloodstream infections,Acinetobacter baumannii,Meropenem,9.6,90.4
+bloodstream infections,Acinetobacter baumannii,Minocycline,69.2,30.8
+bloodstream infections,Acinetobacter baumannii,Tetracycline,37.5,62.5
+bloodstream infections,Acinetobacter baumannii,Tigecycline,75.8,24.2
+bloodstream infections,Pseudomonas aeruginosa,Amikacin,51,49
+bloodstream infections,Pseudomonas aeruginosa,Cefepime,44.5,55.5
+bloodstream infections,Pseudomonas aeruginosa,Ceftazidime,49.2,50.8
+bloodstream infections,Pseudomonas aeruginosa,Ciprofloxacin,42.6,57.4
+bloodstream infections,Pseudomonas aeruginosa,Colistin,93.9,6.1
+bloodstream infections,Pseudomonas aeruginosa,Gentamicin,49,51
+bloodstream infections,Pseudomonas aeruginosa,Imipenem,38.9,61.1
+bloodstream infections,Pseudomonas aeruginosa,Meropenem,38.1,61.9
+bloodstream infections,Pseudomonas aeruginosa,Tobramycin,46.6,53.4
+bloodstream infections,Enterococcus spp.,Ampicillin,23,77
+bloodstream infections,Enterococcus spp.,Ciprofloxacin,20,80
+bloodstream infections,Enterococcus spp.,Linezolid,92,8
+bloodstream infections,Enterococcus spp.,Vancomycin,85,15
+bloodstream infections,Staphylococcus aureus,Ciprofloxacin,31.4,68.6
+bloodstream infections,Staphylococcus aureus,Clindamycin,43.5,56.5
+bloodstream infections,Staphylococcus aureus,TMP-SMX,64.2,35.8
+bloodstream infections,Staphylococcus aureus,Tetracycline,74.5,25.5
+bloodstream infections,Staphylococcus aureus,Linezolid,98.4,1.6
+bloodstream infections,Staphylococcus aureus,Vancomycin,100,0
+,,,,
+,Organism,Antibiotic,Sensitivity (%),Resistance (%)
+Ventilator-Associated Pneumonia,Enterobacterales,Amoxicillin-Clavulanate,18,82
+Ventilator-Associated Pneumonia,Enterobacterales,Amikacin,25.6,74.4
+Ventilator-Associated Pneumonia,Enterobacterales,Ampicillin,18,82
+Ventilator-Associated Pneumonia,Enterobacterales,Cefazolin,17,83
+Ventilator-Associated Pneumonia,Enterobacterales,Cefepime,10.3,89.7
+Ventilator-Associated Pneumonia,Enterobacterales,Cefotaxime,18,82
+Ventilator-Associated Pneumonia,Enterobacterales,Ceftazidime,11.3,88.7
+Ventilator-Associated Pneumonia,Enterobacterales,Ceftriaxone,10.7,89.3
+Ventilator-Associated Pneumonia,Enterobacterales,Ciprofloxacin,8.5,91.5
+Ventilator-Associated Pneumonia,Enterobacterales,Colistin,65.6,34.4
+Ventilator-Associated Pneumonia,Enterobacterales,Gentamicin,26,74
+Ventilator-Associated Pneumonia,Enterobacterales,Imipenem,20.8,79.2
+Ventilator-Associated Pneumonia,Enterobacterales,Levofloxacin,14.9,85.1
+Ventilator-Associated Pneumonia,Enterobacterales,Meropenem,19.7,80.3
+Ventilator-Associated Pneumonia,Enterobacterales,Minocycline,35.6,64.4
+Ventilator-Associated Pneumonia,Enterobacterales,Netilmicin,18,82
+Ventilator-Associated Pneumonia,Enterobacterales,Piperacillin,18,82
+Ventilator-Associated Pneumonia,Enterobacterales,Tetracycline,23.3,76.7
+Ventilator-Associated Pneumonia,Enterobacterales,Tigecycline,33.3,66.7
+Ventilator-Associated Pneumonia,Enterobacterales,Tobramycin,18,82
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Amoxicillin-Clavulanate,2.5,97.5
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Amikacin,3.2,96.8
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Ampicillin,2.5,97.5
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Cefazolin,2.5,97.5
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Cefepime,4.5,95.5
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Cefotaxime,0,100
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Ceftazidime,5,95
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Ceftriaxone,2.5,97.5
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Ciprofloxacin,1.4,98.6
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Colistin,98.6,1.4
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Gentamicin,5,95
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Imipenem,1.9,98.1
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Levofloxacin,5.6,94.4
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Meropenem,1.9,98.1
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Minocycline,57.2,42.8
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Netilmicin,13.5,86.5
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Piperacillin,0,100
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Tetracycline,28.8,71.2
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Tigecycline,2.5,97.5
+Ventilator-Associated Pneumonia,Acinetobacter baumannii,Tobramycin,20,80
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Amoxicillin-Clavulanate,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Amikacin,70.2,29.8
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Ampicillin,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Cefazolin,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Cefepime,51.3,48.7
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Cefotaxime,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Ceftazidime,53.1,46.9
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Ceftriaxone,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Ciprofloxacin,42.3,57.7
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Colistin,97.1,2.9
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Gentamicin,60,40
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Imipenem,29.3,70.7
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Levofloxacin,42.2,57.8
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Meropenem,32.1,67.9
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Minocycline,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Netilmicin,25,75
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Piperacillin,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Tetracycline,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Tigecycline,47.4,52.6
+Ventilator-Associated Pneumonia,Pseudomonas aeruginosa,Tobramycin,60.7,39.3
