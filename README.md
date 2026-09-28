@@ -37,19 +37,7 @@ Analytics & Reports ◄── Stewardship Guidance ◄── Antibiotic Recommen
 
 ---
 
-## ✨ Key Features
 
-- 🔐 **Secure Authentication & Multi-Tier RBAC**: Role-Based Access Control customized for Medical Interns, Junior Doctors, Senior Consultants, and System Administrators.
-- 📋 **Patient & Infection Case Registry**: Centralized clinical record management tracking patient comorbidities, biomarkers (CBC, CRP, Procalcitonin), and culture findings.
-- 🤖 **Multi-Model AMR Prediction**: Ensemble machine-learning engine allowing dynamic model selection between Gradient Boosting, Random Forest, Decision Tree, and Logistic Regression.
-- 💊 **Evidence-Based Recommendations**: Automated primary and alternative drug dosing guidance with clinical rationale explanations.
-- ⚠️ **Adverse Drug Reaction (ADR) Monitoring**: Incident reporting system for tracking antimicrobial toxicities and therapeutic outcomes.
-- 🛡️ **Antimicrobial Stewardship Console**: Configurable hospital prescribing protocols and restriction rules.
-- 📊 **Interactive Analytics Dashboard**: Visualization of regional resistance trends, pathogen frequency distributions, and drug usage metrics.
-- 📄 **Dynamic PDF Medical Reports**: Automated clinical summary generator built with ReportLab.
-- 💡 **AI Clinical Assistant**: Interactive Q&A interface for antimicrobial treatment inquiries.
-
----
 
 ## 🏛️ System Architecture
 
