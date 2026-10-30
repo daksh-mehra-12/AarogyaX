@@ -56,7 +56,7 @@ def generate_stewardship_pdf(data=None):
 
     # Header
     story.append(Paragraph("AAROGYA X — MONTHLY CLINICAL STEWARDSHIP REPORT", title_style))
-    story.append(Paragraph("City General Hospital — Department of Clinical Pharmacology & AMR Surveillance", subtitle_style))
+    story.append(Paragraph("Aarogya X Clinical Surveillance — Department of Clinical Pharmacology & AMR Surveillance", subtitle_style))
     story.append(HRFlowable(width="100%", thickness=1.5, color=colors.HexColor("#0f766e"), spaceAfter=14))
 
     # Executive Summary
@@ -75,7 +75,7 @@ def generate_stewardship_pdf(data=None):
     active_cases = str(data.get('activeCases', 0)) if data else "0"
     resolved_cases = str(data.get('resolvedCases', 0)) if data else "0"
     adr_reports = str(data.get('adrReports', 0)) if data else "0"
-    compliance = str(data.get('complianceRate', '92.4%')) if data else "92.4%"
+    compliance = str(data.get('complianceRate', 'Surveillance Active')) if data else "Surveillance Active"
 
     table_data = [
         [Paragraph("<b>Metric Parameter</b>", body_style), Paragraph("<b>Surveillance Value</b>", body_style), Paragraph("<b>Status Target</b>", body_style)],

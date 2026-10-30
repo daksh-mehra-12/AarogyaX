@@ -21,6 +21,46 @@ DATASET_PATH = os.path.join(PROJECT_ROOT, 'dataset', 'antimicrobial_resistance_p
 META_OUT = os.path.join(BASE_DIR, 'models_meta.json')
 
 
+def canonicalize_infection(inf_raw: str) -> str:
+    s = str(inf_raw or '').strip().lower()
+    if 'pneumonia' in s or 'vap' in s or 'respiratory' in s:
+        return 'Ventilator-Associated Pneumonia'
+    if 'blood' in s or 'sepsis' in s or 'bacteremia' in s:
+        return 'bloodstream infections'
+    if 'uti' in s or 'urinary' in s:
+        return 'UTI'
+    return str(inf_raw or 'UTI').strip()
+
+
+def canonicalize_organism(org_raw: str) -> str:
+    s = str(org_raw or '').strip().lower()
+    if 'e. coli' in s or 'escherichia' in s:
+        return 'E. coli'
+    if 'klebsiella' in s:
+        return 'Klebsiella pneumoniae'
+    if 'pseudomonas' in s:
+        return 'Pseudomonas aeruginosa'
+    if 'acinetobacter' in s:
+        return 'Acinetobacter baumannii'
+    if 'enterococcus' in s:
+        return 'Enterococcus spp.'
+    if 'staphylococcus' in s:
+        return 'Staphylococcus aureus'
+    if 'enterobacter' in s:
+        return 'Enterobacterales'
+    return str(org_raw or 'E. coli').strip()
+
+
+def clean_numeric_series(series: pd.Series) -> pd.Series:
+    cleaned = (
+        series.astype(str)
+        .str.replace('~', '', regex=False)
+        .str.replace('%', '', regex=False)
+        .str.strip()
+    )
+    return pd.to_numeric(cleaned, errors='coerce')
+
+
 def load_and_clean_data():
     if not os.path.exists(DATASET_PATH):
         raise FileNotFoundError(f"Dataset not found: {DATASET_PATH}")
@@ -29,24 +69,31 @@ def load_and_clean_data():
     total_raw_rows, total_raw_cols = raw_df.shape
     missing_count = int(raw_df.isnull().sum().sum())
 
+    # Remove section header rows embedded in CSV
     df = raw_df.dropna(subset=['Infection', 'Organism', 'Antibiotic', 'Resistance (%)']).copy()
-    df['Resistance (%)'] = pd.to_numeric(df['Resistance (%)'], errors='coerce')
-    df['Sensitivity (%)'] = pd.to_numeric(df['Sensitivity (%)'], errors='coerce')
-    df = df.dropna(subset=['Resistance (%)']).copy()
+    df = df[df['Organism'].astype(str).str.strip().str.lower() != 'organism'].copy()
 
-    duplicates_removed = int(df.duplicated().sum())
+    df['Resistance (%)'] = clean_numeric_series(df['Resistance (%)'])
+    df['Sensitivity (%)'] = clean_numeric_series(df['Sensitivity (%)'])
+    df = df.dropna(subset=['Resistance (%)', 'Sensitivity (%)']).copy()
+
+    df['Infection'] = df['Infection'].apply(canonicalize_infection)
+    df['Organism'] = df['Organism'].apply(canonicalize_organism)
+    df['Antibiotic'] = df['Antibiotic'].astype(str).str.strip()
+
+    duplicates_removed = int(df.duplicated(subset=['Infection', 'Organism', 'Antibiotic']).sum())
     if duplicates_removed > 0:
-        df = df.drop_duplicates().copy()
+        df = df.drop_duplicates(subset=['Infection', 'Organism', 'Antibiotic']).copy()
 
-    def get_risk_level(res_pct):
+    def get_risk_level(res_pct: float) -> int:
         if res_pct < 30.0:
-            return 0
+            return 0  # low
         elif res_pct < 60.0:
-            return 1
+            return 1  # medium
         elif res_pct < 85.0:
-            return 2
+            return 2  # high
         else:
-            return 3
+            return 3  # critical
 
     df['amr_risk_level'] = df['Resistance (%)'].apply(get_risk_level)
 
@@ -93,10 +140,18 @@ def train_models():
     )
 
     models = {
-        "RandomForest": RandomForestClassifier(n_estimators=100, max_depth=10, random_state=42),
-        "GradientBoosting": GradientBoostingClassifier(n_estimators=100, max_depth=5, random_state=42),
-        "DecisionTree": DecisionTreeClassifier(max_depth=6, random_state=42),
-        "LogisticRegression": LogisticRegression(max_iter=1000, random_state=42)
+        "RandomForest": RandomForestClassifier(
+            n_estimators=150, max_depth=12, min_samples_split=2, class_weight='balanced_subsample', random_state=42
+        ),
+        "GradientBoosting": GradientBoostingClassifier(
+            n_estimators=120, learning_rate=0.08, max_depth=4, subsample=0.9, random_state=42
+        ),
+        "DecisionTree": DecisionTreeClassifier(
+            max_depth=6, min_samples_leaf=2, class_weight='balanced', random_state=42
+        ),
+        "LogisticRegression": LogisticRegression(
+            max_iter=1000, C=2.0, class_weight='balanced', random_state=42
+        )
     }
 
     results = {}
@@ -133,7 +188,6 @@ def train_models():
             "confusion_matrix": confusion_matrix(y_test, y_pred).tolist()
         }
 
-        # Save individual model file
         slug = name.lower()
         if "gradient" in slug:
             filename = "gradient_boosting.pkl"
@@ -154,6 +208,7 @@ def train_models():
             "recall": results[name]["recall"],
             "f1_score": results[name]["f1_score"],
             "roc_auc": results[name]["roc_auc"],
+            "cv_f1_mean": results[name]["cv_f1_mean"],
             "feature_columns": list(X.columns),
             "dataset_name": os.path.basename(DATASET_PATH)
         }
@@ -166,8 +221,9 @@ def train_models():
 
     feature_importances = {}
     try:
-        clf_step = best_pipeline.named_steps['classifier']
-        preproc_step = best_pipeline.named_steps['preprocessor']
+        rf_pipe = joblib.load(os.path.join(BASE_DIR, "random_forest.pkl"))["pipeline"]
+        clf_step = rf_pipe.named_steps['classifier']
+        preproc_step = rf_pipe.named_steps['preprocessor']
         cat_encoder = preproc_step.named_transformers_['cat']
         encoded_names = cat_encoder.get_feature_names_out(cat_features).tolist() + num_features
         if hasattr(clf_step, 'feature_importances_'):
@@ -176,17 +232,6 @@ def train_models():
     except Exception:
         pass
 
-    best_model_payload = {
-        "pipeline": best_pipeline,
-        "model_name": best_name,
-        "accuracy": results[best_name]["accuracy"],
-        "precision": results[best_name]["precision"],
-        "recall": results[best_name]["recall"],
-        "f1_score": results[best_name]["f1_score"],
-        "roc_auc": results[best_name]["roc_auc"],
-        "feature_columns": list(X.columns),
-        "dataset_name": os.path.basename(DATASET_PATH)
-    }
     meta_feature_names = [
         {"key": "Infection", "label": "Infection Type", "type": "Categorical"},
         {"key": "Organism", "label": "Pathogen Organism", "type": "Categorical"},
@@ -231,14 +276,14 @@ def train_models():
             "algorithm": best_name,
             "why_selected": f"{best_name} achieved top performance with F1-Score of {best_f1*100:.2f}% and ROC-AUC of {results[best_name]['roc_auc']:.4f} across 5-fold cross-validation.",
             "training_summary": f"Trained on {len(X_train)} real clinical surveillance records with {len(X.columns)} features. Evaluated against {len(X_test)} holdout test records (20%).",
-            "prediction_explanation": "Predicts AMR risk class (Low, Medium, High, Critical) and returns exact probability distributions using scikit-learn pipeline inference."
+            "prediction_explanation": "Predicts AMR risk class (Low, Medium, High, Critical) and returns exact probability distributions using scikit-learn pipeline inference grounded in the clinical AMR surveillance dataset."
         }
     }
 
     with open(META_OUT, "w", encoding="utf-8") as f:
         json.dump(models_meta_payload, f, indent=2)
 
-    print(f"All 4 models trained & saved successfully. Selected top model: {best_name}")
+    print(f"All 4 models trained & saved successfully ({len(data['df'])} clean records). Selected top model: {best_name}")
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 import os
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-DEFAULT_DB_PATH = os.path.join(BASE_DIR, 'aarogya.db').replace('\\', '/')
+DEFAULT_DB_PATH = os.environ.get('TEST_DB_PATH') or os.path.join(BASE_DIR, 'aarogya.db').replace('\\', '/')
 
 raw_db_url = os.environ.get('DATABASE_URL', '')
 if not raw_db_url or raw_db_url.startswith('sqlite:'):

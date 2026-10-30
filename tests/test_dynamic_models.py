@@ -1,23 +1,21 @@
 import os
 import sys
 import unittest
+from fastapi.testclient import TestClient
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 PROJECT_ROOT = os.path.dirname(BASE_DIR)
-sys.path.append(os.path.join(PROJECT_ROOT, 'backend'))
+sys.path.insert(0, os.path.join(PROJECT_ROOT, "backend"))
 
-from app import app
+from main import app
 
 class TestDynamicModels(unittest.TestCase):
     def setUp(self):
-        self.app = app
-        self.app.config['TESTING'] = True
-        self.client = self.app.test_client()
-        
-        # Get intern token
-        res = self.client.post('/api/auth/login', json={'email': 'intern@test.com', 'password': 'password123'})
-        self.token = res.get_json()['token']
-        self.headers = {'Authorization': f'Bearer {self.token}'}
+        self.client = TestClient(app)
+        res = self.client.post("/api/auth/login", json={"email": "intern@test.com", "password": "password123"})
+        self.assertEqual(res.status_code, 200)
+        self.token = res.json()["token"]
+        self.headers = {"Authorization": f"Bearer {self.token}"}
 
     def test_dynamic_model_predictions(self):
         models = ["GradientBoosting", "RandomForest", "DecisionTree", "LogisticRegression"]
@@ -30,13 +28,14 @@ class TestDynamicModels(unittest.TestCase):
                 "severity": "moderate",
                 "age": 50
             }
-            res = self.client.post('/api/predict', json=payload, headers=self.headers)
-            self.assertEqual(res.status_code, 200, f"Prediction failed for model {m}")
-            data = res.get_json()
-            pred = data.get('prediction') or data
-            self.assertEqual(pred['modelName'], m, f"Model name mismatch for {m}")
-            self.assertIn('recommendedDrug', pred)
-            print(f"[+] Prediction successful for model: {m} (Model Accuracy: {pred['modelAccuracy']*100:.1f}%)")
+            res = self.client.post("/api/predict", json=payload, headers=self.headers)
+            self.assertEqual(res.status_code, 200, f"Prediction failed for model {m}: {res.text}")
+            data = res.json()
+            pred = data.get("prediction") or data
+            self.assertEqual(pred["modelName"], m, f"Model name mismatch for {m}")
+            self.assertIn("recommendedDrug", pred)
+            self.assertIn("resistanceRisk", pred)
+            print(f"[+] Prediction successful for model: {m} (Accuracy: {pred['modelAccuracy']*100:.1f}%)")
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

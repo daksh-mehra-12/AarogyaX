@@ -1,15 +1,15 @@
 {
   "dataset_name": "antimicrobial_resistance_project_-_Organism_to_drug_1775057649552.csv",
-  "selected_algorithm": "GradientBoosting",
-  "accuracy": 1.0,
-  "precision": 1.0,
-  "recall": 1.0,
-  "f1_score": 1.0,
-  "roc_auc": 1.0,
+  "selected_algorithm": "RandomForest",
+  "accuracy": 0.973,
+  "precision": 0.9757,
+  "recall": 0.973,
+  "f1_score": 0.9718,
+  "roc_auc": 0.9874,
   "confusion_matrix": [
     [
-      4,
-      0,
+      3,
+      1,
       0,
       0
     ],
@@ -29,13 +29,13 @@
       0,
       0,
       0,
-      10
+      11
     ]
   ],
-  "training_date": "2026-08-11 14:43 UTC",
-  "train_size": 140,
-  "test_size": 36,
-  "total_records": 176,
+  "training_date": "2026-10-30 11:26 UTC",
+  "train_size": 145,
+  "test_size": 37,
+  "total_records": 182,
   "total_features": 4,
   "missing_values": 11,
   "duplicates_removed": 0,
@@ -63,102 +63,64 @@
     }
   ],
   "feature_importances": {
-    "Infection_UTI": 0.0,
-    "Infection_Ventilator-Associated Pneumonia": 0.0,
-    "Infection_bloodstream infections": 0.0,
-    "Organism_Acinetobacter": 0.0,
-    "Organism_Acinetobacter baumannii": 0.0,
-    "Organism_E. coli": 0.0,
-    "Organism_Enterobacterales": 0.0,
-    "Organism_Enterococcus spp.": 0.0,
-    "Organism_Escherichia coli": 0.0,
-    "Organism_Klebsiella": 0.0,
-    "Organism_Klebsiella pneumoniae": 0.0,
-    "Organism_Pseudomonas": 0.0,
-    "Organism_Pseudomonas aeruginosa": 0.0,
-    "Organism_Staphylococcus aureus": 0.0,
-    "Antibiotic_Amikacin": 0.0,
-    "Antibiotic_Amoxicillin-Clavulanate": 0.0,
-    "Antibiotic_Ampicillin": 0.0,
-    "Antibiotic_Cefazolin": 0.0,
-    "Antibiotic_Cefepime": 0.0,
-    "Antibiotic_Cefotaxime": 0.0,
-    "Antibiotic_Ceftazidime": 0.0,
-    "Antibiotic_Ceftriaxone": 0.0,
-    "Antibiotic_Ciprofloxacin": 0.0,
-    "Antibiotic_Clindamycin": 0.0,
-    "Antibiotic_Colistin": 0.0,
-    "Antibiotic_Ertapenem": 0.0,
-    "Antibiotic_Gentamicin": 0.0,
-    "Antibiotic_Imipenem": 0.0,
-    "Antibiotic_Levofloxacin": 0.0,
-    "Antibiotic_Linezolid": 0.0,
-    "Antibiotic_Meropenem": 0.0,
-    "Antibiotic_Minocycline": 0.0,
-    "Antibiotic_Netilmicin": 0.0,
-    "Antibiotic_Piperacillin": 0.0,
-    "Antibiotic_Piperacillin-Tazobactam": 0.0,
-    "Antibiotic_Tetracycline": 0.0,
-    "Antibiotic_Tigecycline": 0.0,
-    "Antibiotic_Tobramycin": 0.0,
-    "Antibiotic_Vancomycin": 0.0,
-    "Sensitivity (%)": 1.0
+    "Infection_UTI": 0.0148,
+    "Infection_Ventilator-Associated Pneumonia": 0.0187,
+    "Infection_bloodstream infections": 0.013,
+    "Organism_Acinetobacter baumannii": 0.0372,
+    "Organism_E. coli": 0.019,
+    "Organism_Enterobacterales": 0.0222,
+    "Organism_Enterococcus spp.": 0.0062,
+    "Organism_Klebsiella pneumoniae": 0.0136,
+    "Organism_Pseudomonas aeruginosa": 0.0425,
+    "Organism_Staphylococcus aureus": 0.0146,
+    "Antibiotic_Amikacin": 0.005,
+    "Antibiotic_Amoxicillin-Clavulanate": 0.0019,
+    "Antibiotic_Ampicillin": 0.0029,
+    "Antibiotic_Cefazolin": 0.0006,
+    "Antibiotic_Cefepime": 0.0068,
+    "Antibiotic_Cefotaxime": 0.0086,
+    "Antibiotic_Ceftazidime": 0.0147,
+    "Antibiotic_Ceftriaxone": 0.0077,
+    "Antibiotic_Ciprofloxacin": 0.013,
+    "Antibiotic_Clindamycin": 0.0019,
+    "Antibiotic_Colistin": 0.0868,
+    "Antibiotic_Ertapenem": 0.0019,
+    "Antibiotic_Fosfomycin": 0.0032,
+    "Antibiotic_Gentamicin": 0.0067,
+    "Antibiotic_Imipenem": 0.011,
+    "Antibiotic_Levofloxacin": 0.0031,
+    "Antibiotic_Linezolid": 0.022,
+    "Antibiotic_Meropenem": 0.0102,
+    "Antibiotic_Minocycline": 0.0196,
+    "Antibiotic_Netilmicin": 0.0031,
+    "Antibiotic_Piperacillin": 0.0005,
+    "Antibiotic_Piperacillin-Tazobactam": 0.0042,
+    "Antibiotic_TMP-SMX": 0.0029,
+    "Antibiotic_Tetracycline": 0.0156,
+    "Antibiotic_Tigecycline": 0.0241,
+    "Antibiotic_Tobramycin": 0.0033,
+    "Antibiotic_Vancomycin": 0.0062,
+    "Sensitivity (%)": 0.5107
   },
   "class_distribution": {
-    "Low Risk": 20,
-    "Medium Risk": 44,
-    "High Risk": 61,
-    "Critical Risk": 51
+    "Low Risk": 21,
+    "Medium Risk": 47,
+    "High Risk": 62,
+    "Critical Risk": 52
   },
   "all_model_results": {
     "RandomForest": {
       "name": "RandomForest",
-      "accuracy": 0.9722,
-      "precision": 0.9778,
-      "recall": 0.9722,
-      "f1_score": 0.9729,
-      "roc_auc": 0.9859,
-      "cv_f1_mean": 0.9702,
+      "accuracy": 0.973,
+      "precision": 0.9757,
+      "recall": 0.973,
+      "f1_score": 0.9718,
+      "roc_auc": 0.9874,
+      "cv_f1_mean": 0.9579,
       "confusion_matrix": [
         [
-          4,
-          0,
-          0,
-          0
-        ],
-        [
+          3,
           1,
-          8,
-          0,
-          0
-        ],
-        [
-          0,
-          0,
-          13,
-          0
-        ],
-        [
-          0,
-          0,
-          0,
-          10
-        ]
-      ],
-      "is_best": false
-    },
-    "GradientBoosting": {
-      "name": "GradientBoosting",
-      "accuracy": 1.0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1_score": 1.0,
-      "roc_auc": 1.0,
-      "cv_f1_mean": 1.0,
-      "confusion_matrix": [
-        [
-          4,
-          0,
           0,
           0
         ],
@@ -178,23 +140,23 @@
           0,
           0,
           0,
-          10
+          11
         ]
       ],
       "is_best": true
     },
-    "DecisionTree": {
-      "name": "DecisionTree",
-      "accuracy": 1.0,
-      "precision": 1.0,
-      "recall": 1.0,
-      "f1_score": 1.0,
+    "GradientBoosting": {
+      "name": "GradientBoosting",
+      "accuracy": 0.973,
+      "precision": 0.9757,
+      "recall": 0.973,
+      "f1_score": 0.9718,
       "roc_auc": 1.0,
       "cv_f1_mean": 1.0,
       "confusion_matrix": [
         [
-          4,
-          0,
+          3,
+          1,
           0,
           0
         ],
@@ -214,19 +176,55 @@
           0,
           0,
           0,
-          10
+          11
+        ]
+      ],
+      "is_best": false
+    },
+    "DecisionTree": {
+      "name": "DecisionTree",
+      "accuracy": 0.973,
+      "precision": 0.9757,
+      "recall": 0.973,
+      "f1_score": 0.9718,
+      "roc_auc": 0.9643,
+      "cv_f1_mean": 1.0,
+      "confusion_matrix": [
+        [
+          3,
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          9,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          13,
+          0
+        ],
+        [
+          0,
+          0,
+          0,
+          11
         ]
       ],
       "is_best": false
     },
     "LogisticRegression": {
       "name": "LogisticRegression",
-      "accuracy": 0.8889,
-      "precision": 0.8879,
-      "recall": 0.8889,
-      "f1_score": 0.8871,
-      "roc_auc": 0.9741,
-      "cv_f1_mean": 0.8439,
+      "accuracy": 0.8649,
+      "precision": 0.8649,
+      "recall": 0.8649,
+      "f1_score": 0.8638,
+      "roc_auc": 0.9655,
+      "cv_f1_mean": 0.8235,
       "confusion_matrix": [
         [
           3,
@@ -242,24 +240,24 @@
         ],
         [
           0,
-          0,
-          12,
+          1,
+          11,
           1
         ],
         [
           0,
           0,
           0,
-          10
+          11
         ]
       ],
       "is_best": false
     }
   },
   "about_model": {
-    "algorithm": "GradientBoosting",
-    "why_selected": "GradientBoosting achieved top performance with F1-Score of 100.00% and ROC-AUC of 1.0000 across 5-fold cross-validation.",
-    "training_summary": "Trained on 140 real clinical surveillance records with 4 features. Evaluated against 36 holdout test records (20%).",
-    "prediction_explanation": "Predicts AMR risk class (Low, Medium, High, Critical) and returns exact probability distributions using scikit-learn pipeline inference."
+    "algorithm": "RandomForest",
+    "why_selected": "RandomForest achieved top performance with F1-Score of 97.18% and ROC-AUC of 0.9874 across 5-fold cross-validation.",
+    "training_summary": "Trained on 145 real clinical surveillance records with 4 features. Evaluated against 37 holdout test records (20%).",
+    "prediction_explanation": "Predicts AMR risk class (Low, Medium, High, Critical) and returns exact probability distributions using scikit-learn pipeline inference grounded in the clinical AMR surveillance dataset."
   }
 }

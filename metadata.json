@@ -1,0 +1,6 @@
+{
+  "name": "Aarogya X — Health AI System",
+  "description": "AI-based antimicrobial resistance prediction, clinical decision support, and pharmacovigilance surveillance system.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
