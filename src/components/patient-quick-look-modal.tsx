@@ -1,14 +1,13 @@
 import * as React from "react";
 import { useState, useMemo } from "react";
-import { Link, useLocation } from "wouter";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
+import { useLocation } from "wouter";
+import { Dialog, DialogContent, DialogTitle, DialogDescription, DialogFooter } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { useGetPatient, getGetPatientQueryKey, useListCases, Patient } from "@/api";
+import { useGetPatient, getGetPatientQueryKey, Patient } from "@/api";
 import {
   Heart, Activity, Thermometer, Wind, Droplet, Stethoscope,
-  ShieldAlert, AlertTriangle, CheckCircle2, FileText, ArrowRight,
-  User, Calendar, ExternalLink, Sparkles, Scale, Biohazard
+  FileText, Scale, Biohazard
 } from "lucide-react";
 
 interface PatientQuickLookModalProps {

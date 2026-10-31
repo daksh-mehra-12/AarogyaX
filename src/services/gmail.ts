@@ -7,11 +7,26 @@ import {
   User as FirebaseUser,
   signOut,
 } from "firebase/auth";
-import firebaseConfig from "../../firebase-applet-config.json";
+const runtimeEnv = import.meta.env ?? (typeof process === "undefined" ? {} : process.env);
+const firebaseConfig = {
+  apiKey: runtimeEnv.VITE_FIREBASE_API_KEY,
+  authDomain: runtimeEnv.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: runtimeEnv.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: runtimeEnv.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: runtimeEnv.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: runtimeEnv.VITE_FIREBASE_APP_ID,
+};
+const hasFirebaseConfig = Object.values(firebaseConfig).every(
+  (value) => typeof value === "string" && value.trim().length > 0,
+);
 
 // Initialize Firebase App safely (singleton)
-export const firebaseApp = getApps().length === 0 ? initializeApp(firebaseConfig) : getApp();
-export const firebaseAuth = getAuth(firebaseApp);
+export const firebaseApp = hasFirebaseConfig
+  ? getApps().length === 0
+    ? initializeApp(firebaseConfig)
+    : getApp()
+  : null;
+export const firebaseAuth = firebaseApp ? getAuth(firebaseApp) : null;
 
 export const GMAIL_SCOPES = [
   "https://mail.google.com/",
@@ -43,7 +58,6 @@ googleProvider.setCustomParameters({
 // NEVER persist access tokens to localStorage or sessionStorage.
 let inMemoryAccessToken: string | null = null;
 let inMemoryGoogleUser: FirebaseUser | null = null;
-let isSigningIn = false;
 
 // Subscriptions for auth state changes in UI
 type AuthListener = (user: FirebaseUser | null, token: string | null) => void;
@@ -69,17 +83,22 @@ export function subscribeGmailAuth(listener: AuthListener): () => void {
 }
 
 // Monitor Firebase Auth state
-onAuthStateChanged(firebaseAuth, (user) => {
-  inMemoryGoogleUser = user;
-  if (!user) {
-    inMemoryAccessToken = null;
-  }
-  notifyListeners();
-});
+if (firebaseAuth) {
+  onAuthStateChanged(firebaseAuth, (user) => {
+    inMemoryGoogleUser = user;
+    if (!user) {
+      inMemoryAccessToken = null;
+    }
+    notifyListeners();
+  });
+}
 
 export async function connectGmail(): Promise<{ user: FirebaseUser; token: string } | null> {
+  if (!firebaseAuth) {
+    throw new Error("Gmail sign-in is not configured. Set the VITE_FIREBASE_* values in .env.");
+  }
+
   try {
-    isSigningIn = true;
     const result = await signInWithPopup(firebaseAuth, googleProvider);
     const credential = GoogleAuthProvider.credentialFromResult(result);
     if (!credential?.accessToken) {
@@ -103,12 +122,14 @@ export async function connectGmail(): Promise<{ user: FirebaseUser; token: strin
     }
     console.warn("Gmail Sign-In notice:", err?.message || err);
     throw err;
-  } finally {
-    isSigningIn = false;
   }
 }
 
 export async function disconnectGmail(): Promise<void> {
+  if (!firebaseAuth) {
+    throw new Error("Gmail sign-in is not configured. Set the VITE_FIREBASE_* values in .env.");
+  }
+
   await signOut(firebaseAuth);
   inMemoryAccessToken = null;
   inMemoryGoogleUser = null;

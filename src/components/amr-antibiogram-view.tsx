@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState, useMemo } from "react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -9,9 +8,8 @@ import { useToast } from "@/hooks/use-toast";
 import { jsPDF } from "jspdf";
 import { getLogoBase64 } from "@/lib/pdf-logo";
 import {
-  ShieldAlert, Download, FileSpreadsheet, FileText, Search,
-  Filter, AlertTriangle, CheckCircle2, Biohazard, Activity, Info,
-  TrendingUp, ExternalLink, RefreshCw
+  ShieldAlert, Download, FileSpreadsheet, Search,
+  Filter, AlertTriangle, CheckCircle2, Biohazard, Activity,
 } from "lucide-react";
 
 export type AwareCategory = "Access" | "Watch" | "Reserve";
@@ -351,7 +349,7 @@ export async function exportAntibiogramPDF(
   onSuccess?: () => void
 ) {
   const doc = new jsPDF({ orientation: "landscape", unit: "mm", format: "a4" });
-  const W = 297, H = 210, M = 14;
+  const W = 297, M = 14;
   const CW = W - M * 2;
   const logoBase64 = await getLogoBase64();
 

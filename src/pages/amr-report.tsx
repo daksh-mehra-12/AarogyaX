@@ -1,4 +1,3 @@
-import * as React from "react";
 import { AmrCaseCollectionForm } from "@/components/amr-case-collection-form";
 import { useLocation } from "wouter";
 

@@ -1,5 +1,5 @@
+import 'dotenv/config';
 import express from 'express';
-import fs from 'fs';
 import http from 'http';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -11,12 +11,11 @@ const __dirname = path.dirname(__filename);
 const rootDir = __dirname;
 
 const PORT = Number(process.env.PORT || 3000);
-const FASTAPI_PORT = 5000;
+const FASTAPI_PORT = Number(process.env.BACKEND_PORT || 5000);
 
-// Determine python binary and persistent package path
-const py = 'python3';
+// Determine python binary and application import paths
+const py = process.env.PYTHON || (process.platform === 'win32' ? 'python' : 'python3');
 const pythonPath = [
-  '/tmp/aarogya_python_packages',
   path.join(rootDir, 'backend'),
   rootDir,
 ].join(path.delimiter);
@@ -37,6 +36,7 @@ function spawnFastAPI() {
       ...process.env,
       PYTHONPATH: pythonPath,
       PYTHONUNBUFFERED: '1',
+      PYTHONDONTWRITEBYTECODE: '1',
       BACKEND_PORT: String(FASTAPI_PORT),
     },
     stdio: 'inherit',

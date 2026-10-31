@@ -6,7 +6,6 @@ import {
   disconnectGmail,
   getGmailAccessToken,
   getGmailUser,
-  isGmailConnected,
 } from "@/services/gmail";
 
 export interface UseGmailReturn {

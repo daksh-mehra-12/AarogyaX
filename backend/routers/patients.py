@@ -6,7 +6,7 @@ from sqlalchemy.orm import Session
 
 from database import get_db
 from models import User, Patient, Case, Prediction, ADRReport, AmrRecord, PatientVital
-from schemas import PatientCreate, PatientListResponse, PatientResponse, PatientVitalCreate
+from schemas import PatientCreate, PatientListResponse, PatientVitalCreate
 from auth import require_role
 
 router = APIRouter(prefix="/api/patients", tags=["Patients"])

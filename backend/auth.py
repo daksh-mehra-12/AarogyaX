@@ -1,12 +1,10 @@
 import logging
 from datetime import datetime, timedelta, timezone
-from typing import Optional, List
+from typing import Optional
 import jwt
-from fastapi import Depends, HTTPException, status, Header, Request
+from fastapi import Depends, HTTPException, status, Request
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from sqlalchemy.orm import Session
-from werkzeug.security import generate_password_hash, check_password_hash
-
 from config import Config
 from database import get_db
 from models import User

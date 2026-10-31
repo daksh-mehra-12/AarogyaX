@@ -1,8 +1,7 @@
-import * as React from "react";
-import { useState, useMemo } from "react";
-import { Link, useLocation } from "wouter";
+import { useState } from "react";
+import { useLocation } from "wouter";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -15,13 +14,11 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useToast } from "@/hooks/use-toast";
-import { useAuth } from "@/hooks/use-auth";
 import { usePatientQuickLook, PatientNameLink } from "@/components/patient-quick-look-modal";
 import { AIResponseViewer } from "@/components/ai-response-viewer";
 import {
-  Biohazard, Search, Filter, Plus, FileText, Trash2, Edit3,
-  Calendar, Activity, ShieldAlert, CheckCircle2, AlertTriangle,
-  RefreshCw, ChevronLeft, ChevronRight, Eye, FlaskConical, Cpu, ExternalLink, Sparkles
+  Biohazard, Search, Plus, Trash2,
+  Calendar, Activity, ChevronLeft, ChevronRight, Eye, FlaskConical, Cpu
 } from "lucide-react";
 
 interface AmrSusceptibility {
@@ -70,7 +67,7 @@ interface AmrRecord {
 }
 
 export default function AmrHistoryPage() {
-  const [location, setLocation] = useLocation();
+  const [, setLocation] = useLocation();
   const { openQuickLook, quickLookModal } = usePatientQuickLook();
   const { toast } = useToast();
   const queryClient = useQueryClient();
@@ -302,7 +299,6 @@ export default function AmrHistoryPage() {
               </TableHeader>
               <TableBody>
                 {(data?.records ?? []).map((record) => {
-                  const primarySusc = record.susceptibilities?.[0];
                   return (
                     <TableRow key={record.id} className="hover:bg-accent/40 transition-colors">
                       {/* Record & Sample ID */}

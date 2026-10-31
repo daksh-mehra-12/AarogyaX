@@ -1,23 +1,21 @@
 import * as React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useLocation } from "wouter";
-import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription, CardFooter } from "@/components/ui/card";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Badge } from "@/components/ui/badge";
 import { Textarea } from "@/components/ui/textarea";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { useToast } from "@/hooks/use-toast";
 import { usePatientQuickLook, PatientNameLink } from "@/components/patient-quick-look-modal";
 import {
-  Biohazard, Plus, Trash2, Check, Sparkles, ShieldAlert,
-  FlaskConical, Cpu, User, Calendar, AlertTriangle, CheckCircle2,
-  ArrowRight, Loader2, Info
+  Biohazard, Plus, Trash2, Check, Sparkles,
+  FlaskConical, Cpu, User, CheckCircle2, Loader2
 } from "lucide-react";
 
 interface SusceptibilityRow {
@@ -95,14 +93,14 @@ export default function NewAmrRecordPage() {
   const [collectionDate, setCollectionDate] = useState<string>(
     new Date().toISOString().split("T")[0]
   );
-  const [collectionTime, setCollectionTime] = useState<string>("10:00");
+  const collectionTime = "10:00";
   const [infectionOrigin, setInfectionOrigin] = useState<string>("community-associated");
-  const [department, setDepartment] = useState<string>("General Medicine");
+  const department = "General Medicine";
 
   // Section B: Microbiology & Susceptibility
   const [organism, setOrganism] = useState<string>("Escherichia coli");
   const [cultureResult, setCultureResult] = useState<string>("positive");
-  const [testingMethod, setTestingMethod] = useState<string>("Automated VITEK 2");
+  const testingMethod = "Automated VITEK 2";
   const [laboratoryStandard, setLaboratoryStandard] = useState<string>("CLSI M100 2024");
   const [laboratoryNotes, setLaboratoryNotes] = useState<string>("");
 

@@ -34,7 +34,6 @@ import {
   FileText,
   ShieldCheck,
   CheckCircle2,
-  ExternalLink,
   Loader2,
   LogOut,
   Send,

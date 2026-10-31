@@ -7,14 +7,12 @@ import { useToast } from "@/hooks/use-toast";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Textarea } from "@/components/ui/textarea";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { FlaskConical, ShieldAlert, Cpu, User, ChevronsUpDown, Check, Search, History, AlertCircle, Upload, FileText, Loader2, CheckCircle2, Biohazard } from "lucide-react";
-import { cn } from "@/lib/utils";
+import { FlaskConical, ShieldAlert, Cpu, User, Check, Search, History, AlertCircle, Upload, FileText, Loader2, CheckCircle2, Biohazard } from "lucide-react";
 import * as React from "react";
 import { AmrCaseCollectionForm } from "@/components/amr-case-collection-form";
 

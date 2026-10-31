@@ -7,7 +7,7 @@ sys.path.append(os.path.abspath(os.path.dirname(__file__)))
 from database import SessionLocal
 from models import User
 
-DEFAULT_PASSWORD = os.environ.get("AAROGYA_DEFAULT_SEED_PASSWORD", "password123")
+DEFAULT_PASSWORD = os.environ.get("AAROGYA_DEFAULT_SEED_PASSWORD")
 
 SEED_USERS = [
     {
@@ -37,6 +37,14 @@ SEED_USERS = [
 ]
 
 def seed_rbac_users():
+    if not DEFAULT_PASSWORD:
+        print(
+            "[RBAC] Demo accounts were not seeded; set AAROGYA_DEFAULT_SEED_PASSWORD "
+            "to enable them in a local development environment.",
+            flush=True,
+        )
+        return
+
     db = SessionLocal()
     try:
         for user_data in SEED_USERS:

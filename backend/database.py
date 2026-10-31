@@ -1,4 +1,3 @@
-import os
 from bootstrap_packages import ensure_packages
 ensure_packages()
 

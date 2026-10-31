@@ -1,6 +1,5 @@
-import * as React from "react";
 import { useState, useRef, useEffect } from "react";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -8,8 +7,8 @@ import { Breadcrumbs } from "@/components/ui/breadcrumbs";
 import { AIResponseViewer } from "@/components/ai-response-viewer";
 import { useToast } from "@/hooks/use-toast";
 import {
-  Bot, User, Send, Sparkles, RefreshCw, ShieldAlert,
-  Stethoscope, Biohazard, Activity, Lightbulb, Copy, Check
+  Bot, User, Send, Sparkles, RefreshCw,
+  Lightbulb, Copy, Check
 } from "lucide-react";
 
 interface Message {

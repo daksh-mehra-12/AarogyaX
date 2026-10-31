@@ -8,14 +8,14 @@ import { useAuth } from "@/hooks/use-auth";
 import {
   ShieldAlert, FlaskConical, AlertTriangle, CheckCircle2, XCircle,
   Info, TrendingUp, TrendingDown, Minus, Lock, Unlock, AlertOctagon,
-  Activity, Stethoscope, TriangleAlert, Calculator, BarChart3,
+  Activity, Stethoscope, Calculator, BarChart3,
 } from "lucide-react";
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
-  Cell, ReferenceLine, AreaChart, Area, LineChart, Line,
+  AreaChart, Area, LineChart, Line,
 } from "recharts";
 import { Breadcrumbs } from "@/components/ui/breadcrumbs";
-import { useListCases, useGetDashboardSummary } from "@/api";
+import { useListCases } from "@/api";
 
 // ── Policy Data ───────────────────────────────────────────────────────────────
 type PolicyLevel = "restricted" | "semi" | "open";
@@ -208,22 +208,6 @@ function StatPill({ label, value, color, sub }: { label: string; value: string |
   );
 }
 
-// ── Trend data (DDD/100 bed-days, monthly rolling) ────────────────────────────
-const TREND_DATA = [
-  { month: "Apr", Meropenem: 18, "Pip-Tazo": 42, Ciprofloxacin: 35, Vancomycin: 12, Colistin: 4 },
-  { month: "May", Meropenem: 21, "Pip-Tazo": 38, Ciprofloxacin: 30, Vancomycin: 14, Colistin: 5 },
-  { month: "Jun", Meropenem: 19, "Pip-Tazo": 45, Ciprofloxacin: 33, Vancomycin: 11, Colistin: 3 },
-  { month: "Jul", Meropenem: 26, "Pip-Tazo": 40, Ciprofloxacin: 28, Vancomycin: 16, Colistin: 6 },
-  { month: "Aug", Meropenem: 30, "Pip-Tazo": 44, Ciprofloxacin: 31, Vancomycin: 18, Colistin: 8 },
-  { month: "Sep", Meropenem: 28, "Pip-Tazo": 50, Ciprofloxacin: 36, Vancomycin: 15, Colistin: 7 },
-  { month: "Oct", Meropenem: 34, "Pip-Tazo": 48, Ciprofloxacin: 29, Vancomycin: 20, Colistin: 9 },
-  { month: "Nov", Meropenem: 32, "Pip-Tazo": 53, Ciprofloxacin: 34, Vancomycin: 22, Colistin: 11 },
-  { month: "Dec", Meropenem: 29, "Pip-Tazo": 46, Ciprofloxacin: 38, Vancomycin: 19, Colistin: 8 },
-  { month: "Jan", Meropenem: 37, "Pip-Tazo": 55, Ciprofloxacin: 32, Vancomycin: 24, Colistin: 13 },
-  { month: "Feb", Meropenem: 35, "Pip-Tazo": 51, Ciprofloxacin: 27, Vancomycin: 21, Colistin: 10 },
-  { month: "Mar", Meropenem: 40, "Pip-Tazo": 58, Ciprofloxacin: 30, Vancomycin: 26, Colistin: 14 },
-];
-
 const TREND_DRUGS: { key: string; color: string; gradId: string; policy: PolicyLevel }[] = [
   { key: "Pip-Tazo",      color: "#f59e0b", gradId: "gPipTazo",  policy: "semi" },
   { key: "Ciprofloxacin", color: "#10b981", gradId: "gCipro",    policy: "open" },
@@ -256,7 +240,6 @@ export default function Stewardship() {
   const { user } = useAuth();
   const role = user?.role ?? "intern";
   const { data: casesData } = useListCases({ page: 1, limit: 200 });
-  const { data: dashboardSummary } = useGetDashboardSummary();
   const dbCases = casesData?.cases ?? [];
 
   const [entries, setEntries] = React.useState<DrugEntry[]>(DEMO_ENTRIES.map(e => ({ ...e })));

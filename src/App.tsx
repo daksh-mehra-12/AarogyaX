@@ -82,8 +82,7 @@ function AccessDenied({ role }: { role: string }) {
 }
 
 // ── Limited access banner ─────────────────────────────────────────────────────
-function LimitedBanner({ message, role }: { message: string; role: string }) {
-  const roleColor = ROLE_COLORS[role as AppRole] ?? "#f59e0b";
+function LimitedBanner({ message }: { message: string }) {
   return (
     <div className="mb-4 flex items-start gap-3 rounded-lg px-4 py-3 text-sm"
       style={{ background: "rgba(245,158,11,0.08)", border: "1px solid rgba(245,158,11,0.3)", color: "#fcd34d" }}>
@@ -121,7 +120,7 @@ function ProtectedRoute({ component: Component, ...rest }: { component: React.Co
   return (
     <AppLayout>
       {access === "limited" && limitedMsg && (
-        <LimitedBanner message={limitedMsg} role={user?.role ?? ""} />
+        <LimitedBanner message={limitedMsg} />
       )}
       <Component {...rest} />
     </AppLayout>

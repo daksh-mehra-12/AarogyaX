@@ -57,7 +57,3 @@ export const SidebarMenuButton = React.forwardRef<HTMLButtonElement, SidebarMenu
   }
 );
 SidebarMenuButton.displayName = "SidebarMenuButton";
-
-export function SidebarTrigger({ className, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  return null;
-}

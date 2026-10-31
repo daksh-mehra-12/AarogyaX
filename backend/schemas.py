@@ -1,5 +1,5 @@
 from typing import List, Optional, Any, Dict
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 # ── Auth Schemas ─────────────────────────────────────────────────────────────
 class LoginRequest(BaseModel):
@@ -204,4 +204,3 @@ class AmrHistoryResponse(BaseModel):
     page: int
     limit: int
     pages: int
-

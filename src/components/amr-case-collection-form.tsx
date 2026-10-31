@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState, useEffect, useRef } from "react";
 import { useLocation } from "wouter";
 import { useListPatients, useCreateCase } from "@/api";
@@ -15,23 +14,18 @@ import {
   Check,
   ChevronDown,
   Sparkles,
-  ShieldAlert,
-  FileText,
   ArrowRight,
   RefreshCw,
   Search,
   User as UserIcon,
   CheckCircle2,
   FileDown,
-  AlertCircle,
-  ExternalLink,
   Download,
   Info
 } from "lucide-react";
 import {
   Dialog,
   DialogContent,
-  DialogHeader,
   DialogTitle,
   DialogDescription,
 } from "@/components/ui/dialog";
@@ -1045,8 +1039,17 @@ export function AmrCaseCollectionForm({ onCancel }: { onCancel?: () => void }) {
               </div>
             </div>
 
-            {/* SECTION 5: FOOTER ACTIONS (ONLY SUBMIT & SAVE - ALL CANCEL/WATERMARK REMOVED) */}
+            {/* SECTION 5: FOOTER ACTIONS */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-start gap-4 pt-5 border-t border-[#16233b]">
+              {onCancel && (
+                <button
+                  type="button"
+                  onClick={onCancel}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl border border-slate-600 text-slate-300 text-sm font-semibold transition-colors hover:bg-slate-800"
+                >
+                  Cancel
+                </button>
+              )}
               {/* Submit AMR Case Button */}
               <button
                 type="submit"

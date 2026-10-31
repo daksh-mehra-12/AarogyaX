@@ -1,7 +1,6 @@
-import * as React from "react";
 import { useState, useMemo } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
@@ -235,7 +234,7 @@ export default function Reports() {
 
     const rows: AntibiogramRow[] = [];
     let idx = 1;
-    map.forEach((entry, key) => {
+    map.forEach((entry) => {
       const sensPct = entry.total > 0 ? Math.round((entry.sensitive / entry.total) * 100) : 0;
       const interPct = entry.total > 0 ? Math.round((entry.intermediate / entry.total) * 100) : 0;
       const resPct = entry.total > 0 ? Math.round((entry.resistant / entry.total) * 100) : 0;

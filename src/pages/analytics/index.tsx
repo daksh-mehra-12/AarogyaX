@@ -114,7 +114,7 @@ export default function Analytics() {
                     stroke="none"
                     isAnimationActive={false}
                   >
-                    {(organisms?.organisms ?? []).map((entry, index) => (
+                    {(organisms?.organisms ?? []).map((_, index) => (
                       <Cell key={`cell-${index}`} fill={[COLORS.primary, COLORS.secondary, COLORS.highRisk, COLORS.mediumRisk, COLORS.lowRisk][index % 5]} />
                     ))}
                   </Pie>

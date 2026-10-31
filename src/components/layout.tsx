@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, useLocation } from "wouter";
+import { useLocation } from "wouter";
 import { useAuth } from "@/hooks/use-auth";
 import { useTheme } from "@/components/theme-provider";
 import { canSeeNavItem, ROLE_LABELS, ROLE_COLORS, AppRole } from "@/lib/access";
@@ -10,9 +10,9 @@ import {
 } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import {
-  LayoutDashboard, History, Stethoscope,
+  LayoutDashboard,
   AlertTriangle, BarChart3, Settings, LogOut,
-  Plus, FileBarChart, Bot, Sun, Moon, Shield, Biohazard, Users
+  Plus, FileBarChart, Bot, Sun, Moon, Biohazard, Users
 } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { WorkspaceBreadcrumbs } from "@/components/workspace-breadcrumbs";
@@ -39,17 +39,6 @@ export function AppLayout({ children }: { children: React.ReactNode }) {
   const roleLabel = ROLE_LABELS[role] ?? role;
   const roleColor = ROLE_COLORS[role] ?? "#2563eb";
   const navigation = ALL_NAV.filter(item => canSeeNavItem(role, item.href));
-
-  // Determine current active page title for header
-  const currentNavItem = ALL_NAV.find(item =>
-    item.href === "/cases/new"
-      ? location === "/cases/new"
-      : item.href === "/cases"
-      ? location.startsWith("/cases") && !location.startsWith("/cases/new")
-      : location.startsWith(item.href)
-  );
-
-  const pageTitle = currentNavItem?.name || "Clinical System";
 
   const handleLogout = () => {
     logout();

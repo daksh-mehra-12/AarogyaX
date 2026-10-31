@@ -1,4 +1,3 @@
-import * as React from "react";
 import { useState } from "react";
 import { useGetDashboardSummary, useGetRecentActivity, useListPatients } from "@/api";
 import { Skeleton } from "@/components/ui/skeleton";
