@@ -51,6 +51,8 @@ def _unlock(lock_file):
 
 
 def ensure_packages():
+    if os.environ.get("AAROGYA_PREINSTALLED_PACKAGES") == "1":
+        return
     os.makedirs(PY_PKGS, exist_ok=True)
     expected_marker = f"{sys.implementation.cache_tag}:{REQUIREMENTS_HASH}"
     if _is_ready(expected_marker):
